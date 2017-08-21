@@ -1,0 +1,21 @@
+<!--this is the functioning user context -->
+
+
+ <aura:component implements='forceCommunity:availableForAllPageTypes' controller='userContext' access="global">
+    <aura:attribute name="searchHub" type="String" default="communityCoveo"/>
+	<aura:attribute name="usertitle" type="String" />
+    <ui:outputText value="The User is" />
+    <ui:outputText value="{!v.usertitle}" />
+    <CoveoV2:Search aura:id="communityCustomContext"
+        name="communityPopularPages"
+        searchHub="communityCoveo"
+        autoInjectBasicQuery="false"
+        autoInitialize="true"
+        GetSearchToken="{!c.generateSearchToken}"
+        InterfaceContentLoaded="{!c.onInterfaceContentLoaded}"/>
+    <style>
+        #CoveoInterfaceEditorToolbox.cCommunityPopularArticles {
+            display: none;
+        }
+    </style>
+</aura:component>
