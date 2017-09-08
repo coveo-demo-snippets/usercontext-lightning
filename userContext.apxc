@@ -1,0 +1,33 @@
+public with sharing class userContext {
+    @AuraEnabled
+    public static String userContext {get;set;}
+    
+    @AuraEnabled
+    public static String getUserTitle() {    
+        id userId = UserInfo.getUserId();
+        System.debug(userId);
+        User u = [select id, Title, LastName from User where id = : userId];
+        System.debug('Apex');
+        System.debug(u.LastName);
+        return u.LastName;
+    }
+    
+    @AuraEnabled
+    public static List<String> getToken() {
+        
+        id userId = UserInfo.getUserId();
+        System.debug(userId);
+        User u = [select id, Title, LastName from User where id = : userId];
+        System.debug('Apex');
+        System.debug(u.LastName);
+        userContext = u.LastName;
+        
+        String token = CoveoV2.Globals.generateSearchToken();
+        System.debug('token');
+        System.debug(token);
+    
+        // Generate a token using the Globals class provided by Coveo.
+        // See the Globals Class documentation: https://developers.coveo.com/x/LYCpAQ
+        return new List<String>{token, u.LastName};
+    }
+}
