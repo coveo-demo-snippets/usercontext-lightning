@@ -14,7 +14,7 @@
   	 	Coveo.$('.CoveoSearchInterface').on('buildingQuery', function(e, args) {
            
             	//add pizza to query
-                args.queryBuilder.expression.add('pizza');
+                //args.queryBuilder.expression.add('pizza');
             
             	//add user context to query
          		args.queryBuilder.context = {};
